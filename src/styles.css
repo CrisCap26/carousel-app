@@ -1,0 +1,83 @@
+/* styles.css */
+:root {
+    background-color: black;
+}
+
+.App {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+.carrusel-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    /* width: 100vw;
+    height: 100vh;
+    background-color: aliceblue; */
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+.carrusel-item {
+    margin: 20px;
+    text-align: center;
+}
+
+.styleImg {
+    width: 90vw;
+    height: 80vh;
+}
+
+.styleVideo {
+    width: 90vw;
+    height: 90vh;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+
+/* styles.css */
+/* .carrusel-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 650px;
+    margin: 0 auto;
+  }
+  
+  .carrusel-item {
+    margin: 20px;
+    text-align: center;
+  }
+  
+  button {
+    padding: 10px 20px;
+    margin: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  } */
