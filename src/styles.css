@@ -28,6 +28,22 @@
     text-align: center;
 }
 
+.arrow-icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    z-index: 10;
+  }
+  
+  .arrow-icon:first-child {
+    left: 10px;
+  }
+  
+  .arrow-icon:last-child {
+    right: 10px;
+  }
+
 .styleImg {
     width: 90vw;
     height: 80vh;

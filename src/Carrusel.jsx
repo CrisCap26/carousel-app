@@ -61,6 +61,7 @@
 
 
 import React, { useState, useEffect, useRef } from 'react';
+import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 
 const Carrusel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -105,7 +106,11 @@ const Carrusel = () => {
 
   return (
     <div className="carrusel-container">
-      <button onClick={handlePrev}>Anterior</button>
+      {/* <button onClick={handlePrev}>Anterior</button> */}
+       {/* Íconos de flecha para ir al elemento anterior */}
+       <div className="arrow-icon" onClick={handlePrev}>
+        <FaArrowLeft color='white' size={30} />
+      </div>
 
       <div className="carrusel-item">
         {items[currentIndex].type === 'image' ? (
@@ -125,7 +130,12 @@ const Carrusel = () => {
         )}
       </div>
 
-      <button onClick={handleNext}>Siguiente</button>
+      {/* <button onClick={handleNext}>Siguiente</button> */}
+
+      {/* Íconos de flecha para ir al siguiente elemento */}
+      <div className="arrow-icon" onClick={handleNext}>
+        <FaArrowRight color='white' size={30} />
+      </div>
     </div>
   );
 };
