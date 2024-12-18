@@ -68,10 +68,11 @@ const Carrusel = () => {
 
   const items = [
     { type: 'image', src: '/img.png' },
-    // { type: 'video', src: 'https://www.w3schools.com/html/mov_bbb.mp4' },
+    { type: 'video', src: '/vid.mp4' },
     { type: 'video', src: '/video1.mp4' },
+    { type: 'image', src: '/imagen.jpg' },
     { type: 'image', src: '/paisajes-hermosos.jpg' },
-    // { type: 'video', src: 'https://www.w3schools.com/html/movie.mp4' },
+    { type: 'video', src: '/vid2.mp4' },
   ];
 
   const videoRef = useRef(null);
@@ -79,8 +80,7 @@ const Carrusel = () => {
   // Función que maneja el final del video
   const handleVideoEnd = () => {
     // Avanzar al siguiente elemento cuando el video termine
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % items.length);
-    console.log('Video fin');
+    handleNext();
   };
 
   // Función para cambiar al siguiente elemento
@@ -117,6 +117,7 @@ const Carrusel = () => {
           <img className='styleImg' src={items[currentIndex].src} alt={`Item ${currentIndex}`} />
         ) : (
           <video
+            key={items[currentIndex].src}
             ref={videoRef}
             width="600"
             controls
