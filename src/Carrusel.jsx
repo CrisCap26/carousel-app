@@ -1,65 +1,3 @@
-// import React, { useState, useRef } from 'react';
-
-// const Carrusel = () => {
-//   const [currentIndex, setCurrentIndex] = useState(0);
-
-//   const items = [
-//     { type: 'image', src: '../public/img.png' },
-//     { type: 'video', src: 'https://www.w3schools.com/html/mov_bbb.mp4' },
-//     { type: 'video', src: '../public/video1.mp4' },
-//     { type: 'image', src: '../public/paisajes-hermosos.jpg' },
-//     { type: 'video', src: 'https://www.w3schools.com/html/movie.mp4' },
-
-//   ];
-
-//   const videoRef = useRef(null);
-
-//   // Función que maneja el final del video
-//   const handleVideoEnd = () => {
-//     // Avanzar al siguiente elemento
-//     setCurrentIndex((prevIndex) => (prevIndex + 1) % items.length);
-//     console.log("Video fin")
-//   };
-
-//   // Función para cambiar al siguiente elemento
-//   const handleNext = () => {
-//     setCurrentIndex((prevIndex) => (prevIndex + 1) % items.length);
-//   };
-
-//   // Función para cambiar al elemento anterior
-//   const handlePrev = () => {
-//     setCurrentIndex((prevIndex) => (prevIndex - 1 + items.length) % items.length);
-//   };
-
-//   return (
-//     <div className="carrusel-container">
-//       <button onClick={handlePrev}>Anterior</button>
-
-//       <div className="carrusel-item">
-//         {items[currentIndex].type === 'image' ? (
-//           <img src={items[currentIndex].src} alt={`Item ${currentIndex}`} />
-//         ) : (
-//           <video
-//             ref={videoRef}
-//             width="600"
-//             controls
-//             onEnded={handleVideoEnd}
-//             autoPlay
-//           >
-//             <source src={items[currentIndex].src} type="video/mp4" />
-//             Your browser does not support the video tag.
-//           </video>
-//         )}
-//       </div>
-
-//       <button onClick={handleNext}>Siguiente</button>
-//     </div>
-//   );
-// };
-
-// export default Carrusel;
-
-
 import React, { useState, useEffect, useRef } from 'react';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 
@@ -106,7 +44,6 @@ const Carrusel = () => {
 
   return (
     <div className="carrusel-container">
-      {/* <button onClick={handlePrev}>Anterior</button> */}
        {/* Íconos de flecha para ir al elemento anterior */}
        <div className="arrow-icon" onClick={handlePrev}>
         <FaArrowLeft color='white' size={30} />
@@ -130,9 +67,6 @@ const Carrusel = () => {
           </video>
         )}
       </div>
-
-      {/* <button onClick={handleNext}>Siguiente</button> */}
-
       {/* Íconos de flecha para ir al siguiente elemento */}
       <div className="arrow-icon" onClick={handleNext}>
         <FaArrowRight color='white' size={30} />
