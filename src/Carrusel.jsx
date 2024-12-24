@@ -3,15 +3,26 @@ import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 
 const Carrusel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [items, setItems] = useState([]);
 
-  const items = [
-    { type: 'image', src: '/img.png' },
-    { type: 'video', src: '/vid.mp4' },
-    { type: 'video', src: '/video1.mp4' },
-    { type: 'image', src: '/imagen.jpg' },
-    { type: 'image', src: '/paisajes-hermosos.jpg' },
-    { type: 'video', src: '/vid2.mp4' },
-  ];
+  useEffect(() => {
+    const fetchItems = async () => {
+      const response = await fetch('http://localhost:3030/files');
+      const data = await response.json();
+      console.log(data)
+      setItems(data);
+    };
+
+    fetchItems();
+  }, [])
+  // const items = [
+  //   { type: 'image', src: '/img.png' },
+  //   { type: 'video', src: '/vid.mp4' },
+  //   { type: 'video', src: '/video1.mp4' },
+  //   { type: 'image', src: '/imagen.jpg' },
+  //   { type: 'image', src: '/paisajes-hermosos.jpg' },
+  //   { type: 'video', src: '/vid2.mp4' },
+  // ];
 
   const videoRef = useRef(null);
 
@@ -33,47 +44,55 @@ const Carrusel = () => {
 
   // Cambiar automáticamente a la siguiente imagen cada 5 segundos
   useEffect(() => {
-    if (items[currentIndex].type === 'image') {
-      const intervalId = setInterval(() => {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % items.length);
-      }, 5000); // Cambia cada 5 segundos si es una imagen
+    if (items.length > 0) {
+      if (items[currentIndex].type === 'image') {
+        const intervalId = setInterval(() => {
+          setCurrentIndex((prevIndex) => (prevIndex + 1) % items.length);
+        }, 5000); // Cambia cada 5 segundos si es una imagen
 
-      return () => clearInterval(intervalId); // Limpiar el intervalo cuando el componente cambie
+        return () => clearInterval(intervalId); // Limpiar el intervalo cuando el componente cambie
+      }
     }
   }, [currentIndex, items]);
+  console.log(items, "ITEMSSSSSS")
+  if (items.length > 0) {
+    return (
+      <div className="carrusel-container">
+        {/* Íconos de flecha para ir al elemento anterior */}
+        <div className="arrow-icon" onClick={handlePrev}>
+          <FaArrowLeft color='white' size={30} />
+        </div>
 
-  return (
-    <div className="carrusel-container">
-       {/* Íconos de flecha para ir al elemento anterior */}
-       <div className="arrow-icon" onClick={handlePrev}>
-        <FaArrowLeft color='white' size={30} />
+        <div className="carrusel-item">
+          {items[currentIndex].type === 'image' ? (
+            <img className='styleImg' src={items[currentIndex].src} alt={`Item ${currentIndex}`} />
+          ) : (
+            <video
+              key={items[currentIndex].src}
+              ref={videoRef}
+              width="600"
+              controls
+              onEnded={handleVideoEnd} // Cambiar al siguiente cuando termine el video
+              autoPlay
+              muted
+              className='styleVideo'
+            >
+              <source src={items[currentIndex].src} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          )}
+        </div>
+        {/* Íconos de flecha para ir al siguiente elemento */}
+        <div className="arrow-icon" onClick={handleNext}>
+          <FaArrowRight color='white' size={30} />
+        </div>
       </div>
-
-      <div className="carrusel-item">
-        {items[currentIndex].type === 'image' ? (
-          <img className='styleImg' src={items[currentIndex].src} alt={`Item ${currentIndex}`} />
-        ) : (
-          <video
-            key={items[currentIndex].src}
-            ref={videoRef}
-            width="600"
-            controls
-            onEnded={handleVideoEnd} // Cambiar al siguiente cuando termine el video
-            autoPlay
-            muted
-            className='styleVideo'
-          >
-            <source src={items[currentIndex].src} type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-        )}
-      </div>
-      {/* Íconos de flecha para ir al siguiente elemento */}
-      <div className="arrow-icon" onClick={handleNext}>
-        <FaArrowRight color='white' size={30} />
-      </div>
-    </div>
-  );
+    )
+  } else {
+    return (
+      <div>Loading...</div>
+    )
+  }
 };
 
 export default Carrusel;
