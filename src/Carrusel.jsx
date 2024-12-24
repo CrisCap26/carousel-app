@@ -60,6 +60,7 @@ const Carrusel = () => {
             controls
             onEnded={handleVideoEnd} // Cambiar al siguiente cuando termine el video
             autoPlay
+            muted
             className='styleVideo'
           >
             <source src={items[currentIndex].src} type="video/mp4" />
